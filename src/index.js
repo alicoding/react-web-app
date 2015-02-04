@@ -1,31 +1,33 @@
 var React = require('react');
-var Router = require('react-router');
-var { State, Route, DefaultRoute, RouteHandler } = Router;
+var Input = require('./components/Input');
 
 // This wraps every view
 var App = React.createClass({
-    mixins: [State],
+    defaults: {
+        showScript: false,
+        showHeader: true,
+        submittedNumber: false
+    },
+    getInitialState: function () {
+        return this.defaults;
+    },
+    toggleState: function (e) {
+        e.preventDefault();
+        this.setState({submittedNumber: !this.state.submittedNumber});
+    },
     render: function () {
-        var name = this.getRoutes().reverse()[0].name;
-        return (<div className="wrapper">
-            <nav><h1>lalalala mozilla</h1></nav>
-            <RouteHandler key={name} {...this.props} />
-        </div>);
+        var mainClasses = ['blah', 'bloo', 'foo'];
+        if (this.state.isOn) mainClasses.push('bar');
+        mainClasses = mainClasses.join(' ');
+        return (<main id="next" className={mainClasses}>
+            <p>Is on: {this.state.submittedNumber.toString()}</p>
+            <p><Input label="blah" /></p>
+            <p><button onClick={this.toggleState}>Toggle</button></p>
+        </main>);
     }
 });
-
-var routes = (
-  <Route name="app" path="/" handler={App}>
-    <DefaultRoute name="main" handler={require('./views/Main')}/>
-    <Route name="next" handler={require('./views/Next')} />
-    <Route name="thanks" handler={require('./views/Thanks')} />
-  </Route>
-);
 
 // Uncomment to use touch events
 // React.initializeTouchEvents(true);
 
-// Use Router.HistoryLocation for HTML5 push state.
-Router.run(routes, function (Handler, state) {
-    React.render(<Handler params={state.params}/>, document.body);
-});
+React.render(<App/>, document.body);
