@@ -1,0 +1,19 @@
+{
+    "esnext": true,
+    "preset": "crockford",
+
+    "disallowDanglingUnderscores": null,
+    "disallowMultipleVarDecl": true,
+    "disallowSpacesInNamedFunctionExpression": null,
+    "disallowSpacesInFunctionDeclaration": null,
+    "requireLineFeedAtFileEnd": true,
+    "requireCurlyBraces": [
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireMultipleVarDecl": null
+}

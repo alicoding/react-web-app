@@ -1,0 +1,57 @@
+/*********************************************************
+* page transitions
+*/
+@_d: 0.3s;
+
+.forward-enter {
+  position: absolute;
+  transform: translateX(-30%);
+  z-index: 10000;
+  opacity: 0;
+  overflow: hidden !important;
+}
+
+.forward-enter.forward-enter-active {
+  transition: transform @_d ease,
+    opacity @_d ease;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.forward-leave {
+  position: absolute;
+  opacity: 1;
+  z-index: -1;
+}
+
+.forward-leave.forward-leave-active {
+  transition: opacity 0.1s ease @_d;
+  opacity: 0
+}
+
+// fadeout
+.back-leave {
+  position: absolute;
+  transform: translateX(0%);
+  z-index: 10000;
+  opacity: 1;
+  overflow: hidden !important;
+}
+
+.back-leave.back-leave-active {
+  transition: transform @_d ease,
+    opacity @_d ease;
+  transform: translateX(-30%);
+  opacity: 0;
+}
+
+.back-enter {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.back-enter.back-enter-active {
+  transition: opacity 0.1s ease;
+  opacity: 1
+}
